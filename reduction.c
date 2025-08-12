@@ -66,7 +66,7 @@ int main() {
             tiempo_total[i] = tiempo_total_piloto; // Guardar tiempo total del carro
         }
 
-        // Mostrar resultados finales en formato de tabla
+        // Mostrar resultados finales
         printf("Resultados finales:\n");
         printf("---------------------------------------------\n");
         printf("Carro | Tiempo Total | Mejor Vuelta\n");
