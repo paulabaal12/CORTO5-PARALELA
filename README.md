@@ -240,3 +240,14 @@ Supongamos que estos son los tiempos de los carros en segundos para cada sector 
     ```powershell
     ./sections.exe
     ```
+## Cómo ejecutar reduction.c
+
+1. Abre una terminal (PowerShell) en la carpeta del proyecto.
+2. Compila el archivo usando GCC con soporte OpenMP:
+    ```powershell
+    gcc -fopenmp reduction.c -o reduction.exe
+    ```
+3. Ejecuta el programa:
+    ```powershell
+    ./reduction.exe
+    ```
