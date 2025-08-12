@@ -121,4 +121,104 @@ Imprimir ganador, mejor_vuelta_global, posiciones finales
 ```
 
 ---
-## **Programa**
+## **Ejemplo de Simulación**
+A continuación se describirá una carrera de 2 carros, 3 vueltas y en un circuito de 4 sectores.
+
+**Variables:**
+* `num_carros` = 2
+* `num_vueltas` = 3
+* `num_sectores` = 4
+* `tiempos[num_carros][num_vueltas][num_sectores]` → Matriz con tiempos por sector.
+* `tiempo_total[num_carros]` → Tiempo acumulado total por carro.
+* `ganador` → Índice del carro con menor tiempo total.
+
+---
+
+## Ejemplo de carrera
+
+Supongamos que estos son los tiempos de los carros en segundos para cada sector y vuelta:
+
+| Carro | Vuelta | Sector 1 | Sector 2 | Sector 3 | Sector 4 |
+| ----- | ------ | -------- | -------- | -------- | -------- |
+| 1     | 1      | 25       | 27       | 26       | 28       |
+| 2     | 1      | 26       | 28       | 25       | 27       |
+| 1     | 2      | 24       | 26       | 25       | 27       |
+| 2     | 2      | 27       | 27       | 26       | 28       |
+| 1     | 3      | 25       | 25       | 26       | 27       |
+| 2     | 3      | 26       | 28       | 25       | 26       |
+
+---
+
+### Orden de ejecución
+
+1. **Inicialización**
+
+   * `tiempo_total[1] = 0`
+   * `tiempo_total[2] = 0`
+
+    <br>
+
+2. **Recorrido de vueltas y sectores** (usando `parallel for` para que cada carro calcule en paralelo sus tiempos por vuelta y sector).
+
+   * **Vuelta 1**
+
+     * **Sector 1:**
+
+       * Carro 1: +25 seg → total 25
+       * Carro 2: +26 seg → total 26
+
+        > **Va ganando Carro 1**
+
+     * **Sector 2:**
+
+       * Carro 1: +27 seg → total 52
+       * Carro 2: +28 seg → total 54
+
+        > **Carro 1 sigue ganando**
+     * **Sector 3:**
+
+       * Carro 1: +26 seg → total 78
+       * Carro 2: +25 seg → total 79
+        > **Carro 1 sigue ganando**
+     * **Sector 4:**
+
+       * Carro 1: +28 seg → total 106
+       * Carro 2: +27 seg → total 106
+        > **Empate al final de la vuelta 1**
+
+   * **Vuelta 2**
+
+     * Sectores 1 a 4 se calculan igual, acumulando tiempos.
+     * Al final de la vuelta 2:
+
+       * Carro 1 total: 216 seg
+       * Carro 2 total: 208 seg
+        > **Carro 2 adelante por 8 segundos**
+
+   * **Vuelta 3**
+
+     * Sectores 1 a 4 suman al tiempo total.
+     * Tiempo final:
+
+       * Carro 1: 321 seg
+       * Carro 2: 311 seg
+       
+    <br>
+
+3. **Determinación del ganador** (`reduction(min:tiempo_total)`)
+
+   * Mínimo tiempo: 311 → **Gana Carro 2**
+
+---
+
+### Flujo resumido
+
+1. Cada **carro** calcula su tiempo por sector en paralelo.
+2. Cada **sector** se suma a su tiempo total (`shared: tiempo_total`, pero cada hilo trabaja sobre su índice).
+3. Al final de cada vuelta se puede determinar quién va ganando.
+4. Se usa **reduction(min\:tiempo\_total)** para encontrar el ganador.
+
+---
+
+Si quieres, puedo hacerte **el pseudocódigo con las cláusulas de OpenMP ya puestas** para este ejemplo de la F1. Así quedaría listo para tu readme. ¿Quieres que te lo prepare?
+
