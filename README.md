@@ -218,7 +218,3 @@ Supongamos que estos son los tiempos de los carros en segundos para cada sector 
 3. Al final de cada vuelta se puede determinar quién va ganando.
 4. Se usa **reduction(min\:tiempo\_total)** para encontrar el ganador.
 
----
-
-Si quieres, puedo hacerte **el pseudocódigo con las cláusulas de OpenMP ya puestas** para este ejemplo de la F1. Así quedaría listo para tu readme. ¿Quieres que te lo prepare?
-
