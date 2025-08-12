@@ -218,7 +218,7 @@ Supongamos que estos son los tiempos de los carros en segundos para cada sector 
 3. Al final de cada vuelta se puede determinar quién va ganando.
 4. Se usa **reduction(min\:tiempo\_total)** para encontrar el ganador.
 
-## Cómo ejecutar firstprivate
+## Cómo ejecutar firstprivate.c
 
 1. Abre una terminal (PowerShell) en la carpeta del proyecto.
 2. Compila el archivo usando GCC con soporte OpenMP:
@@ -229,6 +229,14 @@ Supongamos que estos son los tiempos de los carros en segundos para cada sector 
     ```powershell
     ./firstprivate.exe
     ```
+## Cómo ejecutar sections.c
 
-Si no tienes GCC instalado, puedes instalar MinGW o usar WSL (Windows Subsystem for Linux).
-
+1. Abre una terminal (PowerShell) en la carpeta del proyecto.
+2. Compila el archivo usando GCC con soporte OpenMP:
+    ```powershell
+    gcc -fopenmp sections.c -o sections.exe
+    ```
+3. Ejecuta el programa:
+    ```powershell
+    ./sections.exe
+    ```
