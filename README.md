@@ -218,36 +218,15 @@ Supongamos que estos son los tiempos de los carros en segundos para cada sector 
 3. Al final de cada vuelta se puede determinar quién va ganando.
 4. Se usa **reduction(min\:tiempo\_total)** para encontrar el ganador.
 
-## Cómo ejecutar firstprivate.c
+
+## Cómo ejecutar
 
 1. Abre una terminal (PowerShell) en la carpeta del proyecto.
 2. Compila el archivo usando GCC con soporte OpenMP:
     ```powershell
-    gcc -fopenmp firstprivate.c -o firstprivate.exe
+    gcc -fopenmp simulacion.c -o simulacion.exe
     ```
 3. Ejecuta el programa:
     ```powershell
-    ./firstprivate.exe
-    ```
-## Cómo ejecutar sections.c
-
-1. Abre una terminal (PowerShell) en la carpeta del proyecto.
-2. Compila el archivo usando GCC con soporte OpenMP:
-    ```powershell
-    gcc -fopenmp sections.c -o sections.exe
-    ```
-3. Ejecuta el programa:
-    ```powershell
-    ./sections.exe
-    ```
-## Cómo ejecutar reduction.c
-
-1. Abre una terminal (PowerShell) en la carpeta del proyecto.
-2. Compila el archivo usando GCC con soporte OpenMP:
-    ```powershell
-    gcc -fopenmp reduction.c -o reduction.exe
-    ```
-3. Ejecuta el programa:
-    ```powershell
-    ./reduction.exe
+    ./simulacion.exe
     ```
