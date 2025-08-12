@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define NUM_CARROS 2
+#define NUM_CARROS 5
 #define NUM_VUELTAS 3
 #define NUM_SECTORES 4
 
@@ -28,6 +28,9 @@ int main() {
 	// Cada hilo recibe su propia copia de tiempo_base
 	#pragma omp parallel for private(j, k) firstprivate(tiempo_base) shared(tiempos)
 	for (i = 0; i < NUM_CARROS; i++) {
+		// Inicializar semilla (valores númericos aleatorios) única para cada hilo/carro
+		unsigned int semilla = (unsigned int)time(NULL) + i * 100 + omp_get_thread_num();
+		srand(semilla);
 		for (j = 0; j < NUM_VUELTAS; j++) {
 			for (k = 0; k < NUM_SECTORES; k++) {
 				// Simular variación aleatoria en el tiempo de cada sector
@@ -51,7 +54,14 @@ int main() {
 	}
 
 	// Determinar el ganador
-	int ganador = (tiempo_total[0] < tiempo_total[1]) ? 1 : 2;
+	int ganador = 1;
+	int mejor_tiempo = tiempo_total[0];
+	for (i = 1; i < NUM_CARROS; i++) {
+		if (tiempo_total[i] < mejor_tiempo) {
+			mejor_tiempo = tiempo_total[i];
+			ganador = i + 1;
+		}
+	}
 
 	printf("\nResultados finales:\n");
 	for (i = 0; i < NUM_CARROS; i++) {
