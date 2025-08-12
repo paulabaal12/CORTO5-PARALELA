@@ -218,3 +218,17 @@ Supongamos que estos son los tiempos de los carros en segundos para cada sector 
 3. Al final de cada vuelta se puede determinar quién va ganando.
 4. Se usa **reduction(min\:tiempo\_total)** para encontrar el ganador.
 
+## Cómo ejecutar firstprivate
+
+1. Abre una terminal (PowerShell) en la carpeta del proyecto.
+2. Compila el archivo usando GCC con soporte OpenMP:
+    ```powershell
+    gcc -fopenmp firstprivate.c -o firstprivate.exe
+    ```
+3. Ejecuta el programa:
+    ```powershell
+    ./firstprivate.exe
+    ```
+
+Si no tienes GCC instalado, puedes instalar MinGW o usar WSL (Windows Subsystem for Linux).
+
