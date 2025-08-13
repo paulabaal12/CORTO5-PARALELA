@@ -2,15 +2,37 @@
 #include <omp.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #define NUM_CARROS 5
 #define NUM_VUELTAS 3
 #define NUM_SECTORES 4
 #define CIRCUITO "Monza, Italia" 
 
+
 const char *nombres[NUM_CARROS]  = {"Hamilton", "Verstappen", "Leclerc", "Norris", "Sainz"};
 const char *equipos[NUM_CARROS]  = {"Ferrari",  "Red Bull",   "Ferrari", "McLaren","Williams"};
 const char *climas_posibles[]    = {"Soleado", "Nublado", "Lluvia"};
+
+void imprimir_ascii(const char* equipo) {
+    char nombre_archivo[50];
+    
+    snprintf(nombre_archivo, sizeof(nombre_archivo), "%s.txt", equipo);
+    
+    FILE* archivo = fopen(nombre_archivo, "r");
+    
+    if (archivo == NULL) {
+        printf("No se pudo abrir el archivo %s\n", nombre_archivo);
+        return;
+    }
+    
+    char linea[256];
+    while (fgets(linea, sizeof(linea), archivo)) {
+        printf("%s", linea);
+    }
+    
+    fclose(archivo);
+}
 
 int main(void) {
 
@@ -214,6 +236,24 @@ int main(void) {
     printf("\n========================================\n");
     printf("   ¡Fin de la carrera en %s!\n", CIRCUITO);
     printf("========================================\n");
+    // Mostrar logo ASCII según escudería
+    const char *equipo_ganador = equipos[posiciones[0]];
+    printf("\n========================================\n");
+    printf("   GANADOR: %s (%s)\n", nombres[posiciones[0]], equipo_ganador);
+    printf("========================================\n");
+
+    if (strcasecmp(equipo_ganador, "Ferrari") == 0) {
+        imprimir_ascii("ferrari");
+    } else if (strcasecmp(equipo_ganador, "Red Bull") == 0) {
+        imprimir_ascii("redbull");
+    } else if (strcasecmp(equipo_ganador, "McLaren") == 0) {
+        imprimir_ascii("mclaren");
+    } else if (strcasecmp(equipo_ganador, "Williams") == 0) {
+        imprimir_ascii("williams");
+    } else {
+        printf("Equipo no reconocido.\n");
+    }
 
     return 0;
 }
+

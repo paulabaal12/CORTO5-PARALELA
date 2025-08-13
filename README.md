@@ -1,4 +1,4 @@
-# CORTO5-PARALELA
+# CORTO 5-PARALELA
 Para este corto se nos solicitó crear una simulación de un sistema paralelo utilizando las clausulas de OpenMP:
 - `parallel for`
 - `sections`
