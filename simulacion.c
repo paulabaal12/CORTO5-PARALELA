@@ -34,9 +34,11 @@ int main(void) {
 
     srand((unsigned int)time(NULL));
 
-    printf("\n========================================\n");
-    printf("  ¡Comienza la carrera de F1 en %s!\n", CIRCUITO);
-    printf("========================================\n\n");
+    // ASCII de inicio de carrera
+    printf("_    _               /'_'_/.-''/                        _______\n");
+    printf("  `../ |o_..__      / /__   / /  -= Carrera de F1 =-   _\\=.o.=/_\n");
+    printf("`.,(_)______(_).>  / ___/  / /                        |_|_____|_|\n");
+    printf("~~~~~~~~~~~~~~~~~~/_/~~~~~/_/~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
 
     // Inicializar matriz de tiempos y mejor vuelta de cada carro
     for (i = 0; i < NUM_CARROS; i++) {
